@@ -6,9 +6,21 @@ export default function QueryProcessor(query: string): string {
       "writer in the English language and the world's pre-eminent dramatist."
     );
   }
-  if (query.toLowerCase().includes("which of the following numbers is the largest: 96, 56, 99?")) {
-    return "99";
+
+
+  // Create a case-insensitive regex that matches and captures the numbers
+  const pattern = /which of the following numbers is the largest:\s*(\d+),\s*(\d+),\s*(\d+)\??/i;
+  const match = query.match(pattern);
+  if (query.toLowerCase().includes("what is your name?")){
+    if (match) {
+      const [, num1, num2, num3] = match.map(Number);
+      
+      const largest = Math.max(num1, num2, num3);
+      return largest.toString();
+    }  
   }
+
+ 
 
   if (query.toLowerCase().includes("what is your name?")) {
     return "ain";
