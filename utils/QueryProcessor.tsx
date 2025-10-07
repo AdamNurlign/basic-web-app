@@ -17,7 +17,16 @@ export default function QueryProcessor(query: string): string {
       const largest = Math.max(num1, num2, num3);
       return largest.toString();
   }  
- 
+  // Create a case-insensitive regex that matches and captures the numbers
+  const pattern1 = /what is\s*(\d+)\s*plus\s*(\d+)\??/i;
+  const match1 = query.match(pattern1);
+
+  if (match1) {
+      const [, num1, num2] = match1.map(Number);
+
+      const sum = num1 + num2;
+      return sum.toString();
+  }
 
  
 
